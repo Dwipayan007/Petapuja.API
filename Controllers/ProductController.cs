@@ -1,12 +1,16 @@
-﻿using System;
+﻿using Petapuja.API.Repo;
+using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace Petapuja.API.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class ProductController : ApiController
     {
         // GET: api/Product
@@ -16,9 +20,9 @@ namespace Petapuja.API.Controllers
         }
 
         // GET: api/Product/5
-        public string Get(int id)
+        public DataTable Get(int id)
         {
-            return "value";
+            return ProductRepo.getAllProductById(id);
         }
 
         // POST: api/Product
